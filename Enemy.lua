@@ -1,6 +1,6 @@
-Player = Object:extend()
+Enemy = Object:extend()
 
-function Player:new(x1, y1)
+function Enemy:new(x1, y1)
 	self.x = x1
 	self.y = y1
 	self.maxrange = 3
@@ -14,7 +14,17 @@ function Player:new(x1, y1)
 	}
 end
 
-function Player:keypressed(key)
+function Enemy:update(dt)
+	self.x = self.x + 20
+	self.range=self.range-1
+	if self.range<=0 then
+		self.range = self.maxrange
+		return true
+	end
+	return false
+end
+
+function Enemy:keypressed(key)
 	if key=="w" then
 		self.y = self.y-20
 	elseif key=="a" then
@@ -34,16 +44,12 @@ function Player:keypressed(key)
 	return false
 end
 
-function Player:isDead()
+function Enemy:isDead()
 	return self.hp<=0
 end
 
-function Player:draw()
-	if players[lasttx][pindex] == self then
-		love.graphics.setColor(0, 1, 1)
-	else
-		love.graphics.setColor(1, 1, 1)
-	end
+function Enemy:draw()
+	love.graphics.setColor(1, 1, 0)
 	love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
 	--love.graphics.draw(self.sprite, self.x, self.y, 0, self.w/self.sprite:getWidth(), self.h/self.sprite:getHeight())
 end
