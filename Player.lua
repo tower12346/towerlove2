@@ -67,6 +67,7 @@ function Player:draw()
 	love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
 
 	love.graphics.setColor(0, 0, 0)
+	love.graphics.print(self.range, self.x, self.y)
 	love.graphics.rectangle("fill", self.x, self.y + self.h - self.hph, self.w, self.hph)
 	love.graphics.setColor(1-self.hp/self.hpmax, self.hp/self.hpmax, 0)
 	love.graphics.rectangle("fill", self.x, self.y + self.h - self.hph, self.w*(self.hp/self.hpmax), self.hph)

@@ -42,7 +42,7 @@ function love.update(dt)
 				eindex = eindex + 1
 			end
 
-			checkeverything()
+			checkdead()
 			t = 0
 		end
 	end
@@ -67,10 +67,10 @@ function love.keypressed(key, scancode, isrepeat)
 		playerphase = false
 	end
 
-	checkeverything()
+	checkdead()
 end
 
-function checkeverything()
+function checkdead()
 	for i, v in ipairs (players[lasttx]) do
   	if players[lasttx][i]:isDead() then
 			worlds[lasttx]:remove(players[lasttx][i])
